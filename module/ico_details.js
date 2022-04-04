@@ -1,0 +1,3 @@
+module.exports = (ctx)=>{
+    ctx.reply(`🔸🔸🔸ICO Start Dates and Details 🔸🔸  \n\n🚀🚀 ICO 1 Details 🚀🚀 \n➡️ Start: 04/20/2022 09:00 UTC \n➡️ End: 05/20/2022 11:00 UTC \n➡️ Total: 10,000,000 SMLT \n➡️ Price : 0.025 USD \n➡️ Minimum purchase: 1,000 SMLT \n➡️ Maximum purchase: 100,000 SMLT  \n\nToken Info:   \n\n➡️ Total Supply : 200,000,000 SMLT \n➡️ Symbol : SMLT \n🔒Locked 12 Months : 128,000,000   \n🔒Locked Address: https://www.pinksale.finance/#/pinklock/record/44159?chain=BSC \n📄Contrat Address: 0x69b4De9691f6669C3c810289Da4A91F7F161Ace2  \n➡️ Website: https://simultane.ltd \n➡️ Twitter: https://twitter.com/Simultanecoin \n➡️ Telegram: https://t.me/simultane.ltd  `).catch((e)=>console.log(e))
+}
