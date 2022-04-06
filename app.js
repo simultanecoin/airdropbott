@@ -27,10 +27,6 @@ bot.on('new_chat_members',ctx=>{
     new_user_welcome(ctx)
 })
 
-bot.on('text',ctx=>{
-    new_user_welcome(ctx)
-})
-
 
 bot.command('menu', ctx=>{
 	new_user_welcome(ctx)
