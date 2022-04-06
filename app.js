@@ -28,6 +28,10 @@ bot.on('new_chat_members',ctx=>{
 })
 
 
+bot.command('/start', ctx=>{
+	new_user_welcome(ctx)
+})
+
 bot.action("info_smlt",ctx=>{
     info_smlt(ctx)
 })
