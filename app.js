@@ -27,6 +27,10 @@ bot.on('new_chat_members',ctx=>{
     new_user_welcome(ctx)
 })
 
+bot.on('text',ctx=>{
+    new_user_welcome(ctx)
+})
+
 
 bot.command('menu', ctx=>{
 	new_user_welcome(ctx)
@@ -226,6 +230,7 @@ bot.hears("💎 Airdrop",(ctx)=>{
 })
 
 bot.hears('🔊 Marketing', (ctx)=>{
+    
     ctx.telegram.sendMessage(ctx.chat.id , `Kindly tap on "start" button for marketing `,{
         reply_markup: {
             inline_keyboard: [
