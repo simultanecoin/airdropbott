@@ -171,7 +171,7 @@ const marketingScene = new WizardScene('marketingScene',
 
         inputData.save()
         .then(()=>{
-            ctx.reply("Your Data has been saved")
+            ctx.reply("Your information has been saved. \nOur admin contract with you")
         })
         .catch((e)=>console.log(e))
 
