@@ -28,7 +28,7 @@ bot.on('new_chat_members',ctx=>{
 })
 
 
-bot.command('/start', ctx=>{
+bot.command('/menu', ctx=>{
 	new_user_welcome(ctx)
 })
 
