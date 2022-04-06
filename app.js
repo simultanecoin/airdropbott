@@ -28,8 +28,16 @@ bot.on('new_chat_members',ctx=>{
 })
 
 
-bot.command('/menu', ctx=>{
+bot.command('menu', ctx=>{
 	new_user_welcome(ctx)
+})
+
+bot.command('stop',ctx=>{
+	ctx.telegram.sendMessage(ctx.chat.id , "Physical menu remove", {
+		reply_markup: {
+			remove_keyboard: true
+		}
+	})
 })
 
 bot.action("info_smlt",ctx=>{
