@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const s = new mongoose.Schema({
     userId: {
-        type: Number
+        type: String
     },
     tg_name: {
         type: String
@@ -11,7 +11,7 @@ const s = new mongoose.Schema({
         type: String
     },
     sub_count: {
-        type: Number
+        type: String
     },
     email: {
         type: String

@@ -33,10 +33,10 @@ bot.command('menu', ctx=>{
 })
 
 bot.command('stop',ctx=>{
-	ctx.telegram.sendMessage(ctx.chat.id , "Physical menu remove", {
+	ctx.telegram.sendMessage(ctx.chat.id , "Menu removed", {
 		reply_markup: {
-			remove_keyboard: true
-		}
+            remove_keyboard: true
+        }
 	})
 })
 
