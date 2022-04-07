@@ -87,7 +87,7 @@ const airdropScene = new WizardScene('airdropScene',
         ctx.telegram.sendMessage( ctx.chat.id , "Join Telegram Group and add at least 5 people to the Group \n\nWrite your username like @khrasedul3" , {
             reply_markup: {
                 inline_keyboard: [
-                    [{text: "Join our telegram group", url: "https://twitter.com/Simultanecoin"}]
+                    [{text: "Join our telegram group", url: "https://t.me/simultane.ltd"}]
                 ]
             }
         }).catch((e)=>console.log(e))
