@@ -72,7 +72,7 @@ const airdropScene = new WizardScene('airdropScene',
     },
     (ctx)=>{
         ctx.session.user.wallet = ctx.update.message.text
-        ctx.telegram.sendMessage(ctx.chat.id , "-Subscribe to the Twitter Page \n-Tag at least 1 friend in the last post on Twitter  \n\nWrite your username like @khrasedul", {
+        ctx.telegram.sendMessage(ctx.chat.id , "1) Subscribe to the Twitter Page \n2) Tag at least 1 friend in the last post on Twitter  \n\n3) Write your Twitter username, like @simultanecoin", {
             reply_markup: {
                 inline_keyboard: [
                     [{text: "Follow our twitter", url: "https://twitter.com/Simultanecoin"}]
@@ -84,7 +84,7 @@ const airdropScene = new WizardScene('airdropScene',
     },
     (ctx)=>{
         ctx.session.user.tw = ctx.update.message.text
-        ctx.telegram.sendMessage( ctx.chat.id , "Join Telegram Group and add at least 5 people to the Group \n\nWrite your username like @khrasedul3" , {
+        ctx.telegram.sendMessage( ctx.chat.id , "1) Check if you have joined Telegram \n2) Check if 5 people are added to the Telegram group \n\n3) Write your username , like @simultanecoin" , {
             reply_markup: {
                 inline_keyboard: [
                     [{text: "Join our telegram group", url: "https://t.me/simultane.ltd"}]
