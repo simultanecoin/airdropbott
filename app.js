@@ -72,7 +72,7 @@ const airdropScene = new WizardScene('airdropScene',
     },
     (ctx)=>{
         ctx.session.user.wallet = ctx.update.message.text
-        ctx.reply("Subscribe to the Twitter Page \nTag at least 1 friend in the last post on Twitter \nhttps://twitter.com/Simultanecoin  \n\nWrite your username like @khrasedul").catch((e)=>console.log(e))
+        ctx.reply("-Subscribe to the Twitter Page \n-Tag at least 1 friend in the last post on Twitter \nhttps://twitter.com/Simultanecoin  \n\nWrite your username like @khrasedul").catch((e)=>console.log(e))
 
         return ctx.wizard.next()
     },
