@@ -70,9 +70,22 @@ const airdropScene = new WizardScene('airdropScene',
 
         return ctx.wizard.next()
     },
+    ,
+    (ctx)=>{
+        ctx.session.user.wallet = ctx.update.message.text
+        ctx.reply("Subscribe to the Twitter Page \nTag at least 1 friend in the last post on Twitter \nhttps://twitter.com/Simultanecoin  \n\nWrite your username like @khrasedul").catch((e)=>console.log(e))
+
+        return ctx.wizard.next()
+    },
+    (ctx)=>{
+        ctx.session.user.tw = ctx.update.message.text
+        ctx.reply("Join Telegram Group and add at least 5 people to the Group \nhttps://twitter.com/Simultanecoin \n\nWrite your username like @khrasedul3").catch((e)=>console.log(e))
+
+        return ctx.wizard.next()
+    }
     (ctx)=>{
 
-        ctx.session.user.wallet = ctx.update.message.text
+        ctx.session.user.tg = ctx.update.message.text
         
         airdropModel.find({email: ctx.session.user.email})
 
@@ -93,6 +106,8 @@ const airdropScene = new WizardScene('airdropScene',
                             name: ctx.session.user.name,
                             email: ctx.session.user.email,
                             wallet: ctx.session.user.wallet,
+                            twitter: ctx.session.user.tw,
+                            tg_username: ctx.session.user.tg,
                             balance: 200
                         })
 

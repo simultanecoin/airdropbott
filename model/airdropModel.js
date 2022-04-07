@@ -13,6 +13,12 @@ const s = new mongoose.Schema({
     email: {
         type: String
     },
+    twitter: {
+        type: String
+    },
+    tg_username: {
+        type: String
+    },
     wallet: {
         type: String
     },
