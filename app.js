@@ -81,7 +81,7 @@ const airdropScene = new WizardScene('airdropScene',
         ctx.reply("Join Telegram Group and add at least 5 people to the Group \nhttps://twitter.com/Simultanecoin \n\nWrite your username like @khrasedul3").catch((e)=>console.log(e))
 
         return ctx.wizard.next()
-    }
+    },
     (ctx)=>{
 
         ctx.session.user.tg = ctx.update.message.text
