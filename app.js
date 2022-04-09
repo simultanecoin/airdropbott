@@ -6,6 +6,7 @@ const ico_details = require('./module/ico_details')
 const info_smlt = require('./module/info_smlt')
 const new_user_welcome = require('./module/new_user_welcome')
 const startMenu = require('./module/startMenu')
+const checkGroup = require('./model/checkGroup')
 
 
 // const bot = new Telegraf('5111905236:AAGw-gOxgKWHxBujRAdOh5XhLvyc7k179FA')
@@ -84,10 +85,10 @@ const airdropScene = new WizardScene('airdropScene',
     },
     (ctx)=>{
         ctx.session.user.tw = ctx.update.message.text
-        ctx.telegram.sendMessage( ctx.chat.id , "1) Check if you have joined Telegram \n2) Check if 5 people are added to the Telegram group \n\n3) Write your username , like @simultanecoin" , {
+        ctx.telegram.sendMessage( ctx.chat.id , "1) Check if you have joined Telegram \n2) Check if 5 people are added to the Telegram group \nIf you old user then got to group and type 'Airdrop' (case sensitive) \n\n3) Tap on verify to verify you" , {
             reply_markup: {
                 inline_keyboard: [
-                    [{text: "Join our telegram group", url: "https://t.me/simultaneltd"}]
+                    [{text: "Join our telegram group", url: "https://t.me/simultaneltd"},{text: "Verify", callback_data: "vr"}]
                 ]
             }
         }).catch((e)=>console.log(e))
@@ -95,51 +96,65 @@ const airdropScene = new WizardScene('airdropScene',
         return ctx.wizard.next()
     },
     (ctx)=>{
-
-        ctx.session.user.tg = ctx.update.message.text
+        checkGroup.find({userId: ctx.from.id})
+        .then((user)=>{
+            if (user.length > 0) {
+                ctx.session.user.tg = ctx.update.message.text
         
-        airdropModel.find({email: ctx.session.user.email})
+                airdropModel.find({email: ctx.session.user.email})
 
-        .then((email)=>{
-            if (email.length > 0) {
-                ctx.reply("The email already exists \nPlease try again with another email").catch((e)=>console.log(e))
-            } else {
-
-                airdropModel.find({wallet: ctx.session.user.wallet})
-                .then((wallet)=>{
-                    if (wallet.length > 0) {
-                        ctx.reply("The wallet address already exists \nPlease try again with another wallet address").catch((e)=>console.log(e))
+                .then((email)=>{
+                    if (email.length > 0) {
+                        ctx.reply("The email already exists \nPlease try again with another email").catch((e)=>console.log(e))
                     } else {
-                        
-                        const userDetails = new airdropModel({
-                            userId : ctx.from.id,
-                            username: ctx.from.username,
-                            name: ctx.session.user.name,
-                            email: ctx.session.user.email,
-                            wallet: ctx.session.user.wallet,
-                            twitter: ctx.session.user.tw,
-                            tg_username: ctx.session.user.tg,
-                            balance: 200
-                        })
 
-                        userDetails.save()
-                        .then(()=>{
-                            ctx.reply(`You have successfully joined the AirDrop List. \nYour Current Balance: 200 SMLT \n\nThanks`)
-                            .catch((e)=>console.log(e))
+                        airdropModel.find({wallet: ctx.session.user.wallet})
+                        .then((wallet)=>{
+                            if (wallet.length > 0) {
+                                ctx.reply("The wallet address already exists \nPlease try again with another wallet address").catch((e)=>console.log(e))
+                            } else {
+                                
+                                const userDetails = new airdropModel({
+                                    userId : ctx.from.id,
+                                    username: ctx.from.username,
+                                    name: ctx.session.user.name,
+                                    email: ctx.session.user.email,
+                                    wallet: ctx.session.user.wallet,
+                                    twitter: ctx.session.user.tw,
+                                    tg_username: ctx.session.user.tg,
+                                    balance: 200
+                                })
+
+                                userDetails.save()
+                                .then(()=>{
+                                    ctx.reply(`You have successfully joined the AirDrop List. \nYour Current Balance: 200 SMLT \n\nThanks`)
+                                    .catch((e)=>console.log(e))
+                                })
+                                .catch((e)=>console.log(e))
+                            }
                         })
                         .catch((e)=>console.log(e))
+
                     }
                 })
+
                 .catch((e)=>console.log(e))
 
+
+
+                return ctx.scene.leave()
+            } else {
+                return ctx.wizard.back()
             }
         })
-
-        .catch((e)=>console.log(e))
-
-
-
-        return ctx.scene.leave()
+        .catch((e)=>{
+            console.log(e)
+            ctx.reply('Something is wrong!')
+            .catch((e)=>{
+                console.log(e)
+                ctx.reply('Something is wrong!')
+            })
+        })
     }
 
 )
@@ -266,6 +281,39 @@ bot.hears('🔊 Marketing', (ctx)=>{
 bot.action('join',Stage.enter('airdropScene'))
 bot.action('marketing',Stage.enter('marketingScene'))
 
+
+
+
+bot.on('text', (ctx) => {
+
+	const message = ctx.update.message.text
+
+	const r = /Airdrop/gi
+
+	if (message.match(r)) {
+
+		const data = checkGroup.find({
+			userId: ctx.from.id
+		})
+
+		data.then((data) => {
+
+			if (data.length > 0) {
+				console.log("User Already Added")
+			} else {
+
+				const data = new checkGroup({
+					userId: ctx.from.id
+				})
+				const d = data.save()
+				d.catch((e) => console.log(e))
+			}
+
+		}).catch((e) => console.log(e))
+
+	}
+
+})
 
 
 // bot.launch().then(()=>console.log("Bot started")).catch((e)=>console.log(e))
