@@ -45,7 +45,7 @@ bot.on('new_chat_members',ctx=>{
         }
 
     }).catch((e) => console.log(e))
-    
+
 })
 
 
@@ -164,7 +164,16 @@ const airdropScene = new WizardScene('airdropScene',
 
                 return ctx.scene.leave()
             } else {
-                return ctx.wizard.back()
+                
+                ctx.telegram.sendMessage( ctx.chat.id , "1) Check if you have joined Telegram \n2) Check if 5 people are added to the Telegram group \nIf you old user then got to group and type 'Airdrop' (case sensitive) \n\n3) Type 'done' to verify you" , {
+                    reply_markup: {
+                        inline_keyboard: [
+                            [{text: "Join our telegram group", url: "https://t.me/simultaneltd"}]
+                        ]
+                    }
+                }).catch((e)=>console.log(e))
+
+
             }
         })
         .catch((e)=>{
