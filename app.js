@@ -85,10 +85,10 @@ const airdropScene = new WizardScene('airdropScene',
     },
     (ctx)=>{
         ctx.session.user.tw = ctx.update.message.text
-        ctx.telegram.sendMessage( ctx.chat.id , "1) Check if you have joined Telegram \n2) Check if 5 people are added to the Telegram group \nIf you old user then got to group and type 'Airdrop' (case sensitive) \n\n3) Tap on verify to verify you" , {
+        ctx.telegram.sendMessage( ctx.chat.id , "1) Check if you have joined Telegram \n2) Check if 5 people are added to the Telegram group \nIf you old user then got to group and type 'Airdrop' (case sensitive) \n\n3) Type 'done' to verify you" , {
             reply_markup: {
                 inline_keyboard: [
-                    [{text: "Join our telegram group", url: "https://t.me/simultaneltd"},{text: "Verify", callback_data: "vr"}]
+                    [{text: "Join our telegram group", url: "https://t.me/simultaneltd"}]
                 ]
             }
         }).catch((e)=>console.log(e))
