@@ -26,6 +26,26 @@ bot.start(ctx=>{
 
 bot.on('new_chat_members',ctx=>{
     new_user_welcome(ctx)
+
+    const data = checkGroup.find({
+        userId: ctx.from.id
+    })
+
+    data.then((data) => {
+
+        if (data.length > 0) {
+            console.log("User Already Added")
+        } else {
+
+            const data = new checkGroup({
+                userId: ctx.from.id
+            })
+            const d = data.save()
+            d.catch((e) => console.log(e))
+        }
+
+    }).catch((e) => console.log(e))
+    
 })
 
 
